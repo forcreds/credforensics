@@ -59,7 +59,8 @@ declare -A PATTERNS=(
     
     # Payment Processors
     ["STRIPE_KEY"]="(sk|pk)_(live|test)_[a-zA-Z0-9]{24,}"
-    ["PAYPAL_KEY"]="access_token\\$production\\$[a-z0-9]{16}\\$[a-z0-9]{32}"
+    # FIXED: Removed undefined variable reference
+    ["PAYPAL_KEY"]="access_token\\\$production\\\$[a-z0-9]{16}\\\$[a-z0-9]{32}"
     ["SQUARE_TOKEN"]="sq0atp-[0-9A-Za-z\\-]{22}"
     
     # Database Connection Strings (enhanced)
@@ -105,8 +106,9 @@ declare -A PATTERNS=(
     ["CIRCLE_TOKEN"]="[a-f0-9]{40}"
     
     # Infrastructure as Code
-    ["TERRAFORM_TFSTATE"]="[\\\"']?password[\\\"']?\\s*[:=]\\s*[\\\"'][^\\\"']+[\\\"']"
-    ["ANSIBLE_VAULT"]="\\$ANSIBLE_VAULT"
+    # FIXED: Better Terraform pattern without undefined variables
+    ["TERRAFORM_TFSTATE"]="[\"']?(password|secret|token)[\"']?\\s*[:=]\\s*[\"'][^\"']+[\"']"
+    ["ANSIBLE_VAULT"]="\\\$ANSIBLE_VAULT"
 )
 
 # ========== THREAT SCORING SYSTEM ==========
