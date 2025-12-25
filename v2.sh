@@ -60,7 +60,7 @@ declare -A PATTERNS=(
     # Payment Processors
     ["STRIPE_KEY"]="(sk|pk)_(live|test)_[a-zA-Z0-9]{24,}"
     # FIXED: Removed undefined variable reference
-    ["PAYPAL_KEY"]="access_token\\\$production\\\$[a-z0-9]{16}\\\$[a-z0-9]{32}"
+    ["PAYPAL_KEY"]="access_token.*production.*[a-z0-9]{32}"
     ["SQUARE_TOKEN"]="sq0atp-[0-9A-Za-z\\-]{22}"
     
     # Database Connection Strings (enhanced)
